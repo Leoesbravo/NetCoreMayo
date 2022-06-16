@@ -50,11 +50,11 @@ namespace PL.Controllers
                 return PartialView("Modal");
             }
         }
-        public JsonResult GrupoGetByIdPlantel(int IdPais)
+        public JsonResult GrupoGetByIdPlantel(int IdPlantel)
         {
-            ML.Result result = BL.Grupo.GetByIdPlantel(IdPais);
+            ML.Result result = BL.Grupo.GetByIdPlantel(IdPlantel);
 
-            return Json(result);
+            return Json(result.Objects);
         }
     }
 }

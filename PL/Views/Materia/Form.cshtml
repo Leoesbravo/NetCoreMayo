@@ -81,7 +81,7 @@
                     @Html.ValidationMessageFor(model => model.Horario.Grupo.IdGrupo)
                 }
             </div>
-        </div>
+        </div>  
 
         <div class="form-group">
             <div class="col-md-3">
@@ -102,7 +102,7 @@
                 $("#ddlPlantel").change(function () {
                     $("#ddlGrupo").empty();
                     $.ajax({
-                        type: 'POST',
+                        type: 'GET',
                         url: '@Url.Action("GrupoGetByIdPlantel")',
                         dataType: 'json',
                         data: { IdPlantel: $("#ddlPlantel").val() },
@@ -111,7 +111,7 @@
                             $.each(grupos, function (i, grupos) {
                                 $("#ddlGrupo").append('<option value="'
                                                            + grupos.idGrupo + '">'
-                                                           + grupos.horario + '</option>');
+                                                           + grupos.nombre + '</option>');
                             });
                         },
                         error: function (ex) {
