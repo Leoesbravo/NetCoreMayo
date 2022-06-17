@@ -12,7 +12,7 @@
 </div>
 </hr>
 
-@using (Html.BeginForm("Form", "MateriaController1", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Form", "Materia", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="row">
         <div class="col-md-3" style="display: none;">
@@ -82,6 +82,14 @@
                 }
             </div>
         </div>  
+         <div class="col-md-3">
+            @Html.LabelFor(model => model.Horario.Turno)
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="bi bi-rulers" style="color: midnightblue"></i></span>
+                @Html.TextBoxFor(model => model.Horario.Turno, new { @class = "form-control", @id = "txtNombre", @placeholder="Ejemp: Matutino", autocomplete = "off" })
+                @Html.ValidationMessageFor(model => model.Horario.Turno, null, new { @class = "text-danger"})
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-3">

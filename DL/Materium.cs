@@ -12,6 +12,7 @@ namespace DL
         public string? Descripcion { get; set; }
         public int? IdSemestre { get; set; }
 
+
         public virtual Semestre? IdSemestreNavigation { get; set; }
     }
 }
