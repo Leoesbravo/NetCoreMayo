@@ -5,6 +5,11 @@ namespace DL
 {
     public partial class Materium
     {
+        public Materium()
+        {
+            Horarios = new HashSet<Horario>();
+        }
+
         public int IdMateria { get; set; }
         public string? Nombre { get; set; }
         public decimal? Costo { get; set; }
@@ -14,5 +19,6 @@ namespace DL
         public string? Imagen { get; set; }
 
         public virtual Semestre? IdSemestreNavigation { get; set; }
+        public virtual ICollection<Horario> Horarios { get; set; }
     }
 }
