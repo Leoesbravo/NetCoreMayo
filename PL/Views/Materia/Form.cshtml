@@ -90,6 +90,29 @@
                 @Html.ValidationMessageFor(model => model.Horario.Turno, null, new { @class = "text-danger"})
             </div>
         </div>
+          <div class="col-md-3">
+
+            @Html.LabelFor(model=> model.Imagen)
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="bi bi-card-image"></i></span>
+                <input id="IFImage" type='file' class="form-control" name="IFImage" onchange="validateFile(this), readURL(this);  " />
+            </div>
+
+            @if (Model.Imagen != null)
+            {
+
+                <img id="Img" src="data:image/*;base64,@Model.Imagen" style="width:250px ; height:250px" />
+
+            }
+            else
+            {
+                <img id="Img" src="~/Imagenes/sinimagen.png" style="width:250px ; height:250px" />
+            }
+
+
+        </div>
+        @Html.HiddenFor(model => model.Imagen)
 
         <div class="form-group">
             <div class="col-md-3">
@@ -129,5 +152,40 @@
                 });
 
             });
+
+             function validateFile()
+                {
+                    var allowedExtension = ['jpeg', 'jpg'];
+                    var fileExtension = document.getElementById('IFImage').value.split('.').pop().toLowerCase();
+                    var isValidFile = false;
+
+                        for(var index in allowedExtension) {
+
+                            if(fileExtension === allowedExtension[index]) {
+                                isValidFile = true;
+                                break;
+                            }
+                        }
+
+                        if(!isValidFile) {
+                            alert('Las extensiones permitidas son : *.' + allowedExtension.join(', *.'));
+                            document.getElementById('IFImage').value = ""
+                        }
+
+                        return isValidFile;
+                }
+                function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#Img')
+                          .attr('src', e.target.result);
+
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
     </script>
 }
