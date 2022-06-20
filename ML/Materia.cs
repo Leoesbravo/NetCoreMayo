@@ -13,5 +13,6 @@
         public ML.Grupo Grupo { get; set; }
         public string? Imagen { get; set; }
         public ML.Horario Horario { get; set; }
+        public bool Estatus { get; set; }
     }
 }

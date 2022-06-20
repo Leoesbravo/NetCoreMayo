@@ -50,6 +50,36 @@ namespace PL.Controllers
                 return PartialView("Modal");
             }
         }
+        [HttpGet]
+        public ActionResult UpdateStatus(int IdMateria)
+        {
+            ML.Result result = BL.Materia.GetById(IdMateria);
+
+            if (result.Correct)
+            {
+                ML.Materia materia = new ML.Materia();
+                materia = ((ML.Materia)result.Object);
+
+                materia.Estatus = (materia.Estatus) ? false : true;
+
+                result = BL.Materia.UpdateById(materia);
+
+                if (result.Correct)
+                {
+                    ViewBag.Mensaje = "El estatus se actualizo correctamente";
+                }
+                else
+                {
+                    ViewBag.Mensaje = "Ocurrio un error al actualizar el Estatus" + result.ErrorMessage;
+                }
+            }
+            else
+            {
+                ViewBag.Mensaje = "Ocurrio un erro al actualizar el Estatus" + result.ErrorMessage;
+            }
+            return PartialView("Modal");
+        }
+
         public JsonResult GrupoGetByIdPlantel(int IdPlantel)
         {
             ML.Result result = BL.Grupo.GetByIdPlantel(IdPlantel);
