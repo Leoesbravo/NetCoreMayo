@@ -97,7 +97,7 @@ namespace PL.Controllers
 
             return Json(result.Objects);
         }
-        //metodo para convertir a bytes la imagen
+         //metodo para convertir a bytes la imagen
         public static byte[] ConvertToBytes(IFormFile imagen)
         {
 
@@ -105,7 +105,7 @@ namespace PL.Controllers
 
             byte[] bytes = new byte[fileStream.Length];
             fileStream.Read(bytes, 0, (int)fileStream.Length);
-
+               
             return bytes;
         }
     }

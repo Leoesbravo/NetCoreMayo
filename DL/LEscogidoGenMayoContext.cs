@@ -36,7 +36,7 @@ namespace DL
             modelBuilder.Entity<Grupo>(entity =>
             {
                 entity.HasKey(e => e.IdGrupo)
-                    .HasName("PK__Grupo__303F6FD93F19183B");
+                    .HasName("PK__Grupo__303F6FD95B219809");
 
                 entity.ToTable("Grupo");
 
@@ -47,7 +47,29 @@ namespace DL
                 entity.HasOne(d => d.IdPlantelNavigation)
                     .WithMany(p => p.Grupos)
                     .HasForeignKey(d => d.IdPlantel)
-                    .HasConstraintName("FK__Grupo__IdPlantel__1273C1CD");
+                    .HasConstraintName("FK__Grupo__IdPlantel__145C0A3F");
+            });
+
+            modelBuilder.Entity<Horario>(entity =>
+            {
+                entity.HasKey(e => e.IdHorario)
+                    .HasName("PK__Horario__1539229B2DB046B3");
+
+                entity.ToTable("Horario");
+
+                entity.Property(e => e.Turno)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.IdGrupoNavigation)
+                    .WithMany(p => p.Horarios)
+                    .HasForeignKey(d => d.IdGrupo)
+                    .HasConstraintName("FK__Horario__IdGrupo__1B0907CE");
+
+                entity.HasOne(d => d.IdMateriaNavigation)
+                    .WithMany(p => p.Horarios)
+                    .HasForeignKey(d => d.IdMateria)
+                    .HasConstraintName("FK__Horario__IdMater__1A14E395");
             });
 
             modelBuilder.Entity<Horario>(entity =>
@@ -75,7 +97,7 @@ namespace DL
             modelBuilder.Entity<Materium>(entity =>
             {
                 entity.HasKey(e => e.IdMateria)
-                    .HasName("PK__Materia__EC17467095A742D1");
+                    .HasName("PK__Materia__EC174670FF2D41F1");
 
                 entity.Property(e => e.Costo).HasColumnType("decimal(18, 2)");
 
@@ -96,7 +118,7 @@ namespace DL
             modelBuilder.Entity<Plantel>(entity =>
             {
                 entity.HasKey(e => e.IdPlantel)
-                    .HasName("PK__Plantel__485FDCFE2A0BD1F3");
+                    .HasName("PK__Plantel__485FDCFE0BA30593");
 
                 entity.ToTable("Plantel");
 
@@ -108,7 +130,7 @@ namespace DL
             modelBuilder.Entity<Semestre>(entity =>
             {
                 entity.HasKey(e => e.IdSemestre)
-                    .HasName("PK__Semestre__BD1FD7F8106E302C");
+                    .HasName("PK__Semestre__BD1FD7F833FB1767");
 
                 entity.ToTable("Semestre");
 
