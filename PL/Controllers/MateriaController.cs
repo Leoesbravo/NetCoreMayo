@@ -11,7 +11,7 @@ namespace PL.Controllers
             materia.Semestre = new ML.Semestre();
 
             materia.Nombre = (materia.Nombre==null) ? "":materia.Nombre;
-            materia.Descripcion = (materia.Descripcion==null) ? "":materia.Descripcion;
+            materia.Semestre.IdSemestre = (materia.Semestre.IdSemestre ==null) ? 0:materia.Semestre.IdSemestre;
 
             ML.Result result = BL.Materia.GetAll(materia);
             ML.Result resultSemestre = BL.Semestre.GetAll();
@@ -25,9 +25,9 @@ namespace PL.Controllers
         public ActionResult GetAll(ML.Materia materia)
         {
             
-            materia.Semestre = new ML.Semestre();
+            //materia.Semestre = new ML.Semestre();
             materia.Nombre = (materia.Nombre == null) ? "" : materia.Nombre;
-            materia.Descripcion = (materia.Descripcion == null) ? "" : materia.Descripcion;
+            materia.Semestre.IdSemestre = (materia.Semestre.IdSemestre == null) ? 0 : materia.Semestre.IdSemestre;
 
             ML.Result result = BL.Materia.GetAll(materia);
             ML.Result resultSemestre = BL.Semestre.GetAll();

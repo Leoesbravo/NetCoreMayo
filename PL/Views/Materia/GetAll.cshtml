@@ -34,9 +34,11 @@
                 </div>
             
 
-                <div class="col-md-3">    
-                    @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control", @id = "txtDescripcion", @autocomplete = "off", @placeholder = "Descripcion" })
-                </div>
+                <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="bi bi-journal-text" style="color: midnightblue"></i></span>
+                @Html.DropDownListFor(model => model.Semestre.IdSemestre, new SelectList(Model.Semestre.Semestres, "IdSemestre", "Nombre"), "Selecciona un semestre", new { @class = "form-control", @id = "ddlPlantel" })
+                @Html.ValidationMessageFor(model => model.Semestre.IdSemestre)
+            </div>
                
                     <div class="col-md-3">
                         <input type="submit" value="Buscar" class="btn btn-info" />

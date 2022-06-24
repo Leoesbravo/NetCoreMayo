@@ -41,7 +41,7 @@
                 @Html.TextBoxFor(model => model.Creditos, new { @class = "form-control", @id = "txtCreditos",  @onkeypress = "return SoloNumeros(event)"  })
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             @Html.LabelFor(model => model.Descripcion)
             <div class="input-group mb-3">
                 <span class="input-group-text"><i class="bi bi-rulers" style="color: midnightblue"></i></span>
@@ -49,6 +49,8 @@
                 @Html.ValidationMessageFor(model => model.Descripcion, null, new { @class = "text-danger"})
             </div>
         </div>
+        </div>
+        <div class="row">
             <div class="col-md-3">
             @Html.Label("Semestre")
             <div class="input-group mb-3">
@@ -57,7 +59,6 @@
                 @Html.ValidationMessageFor(model => model.Semestre.IdSemestre)
             </div>
         </div>
-                </div>
             <div class="col-md-3">
             @Html.Label("Plantel")
             <div class="input-group mb-3">
@@ -66,7 +67,7 @@
                 @Html.ValidationMessageFor(model => model.Horario.Grupo.Plantel.IdPlantel)
             </div>
         </div>
-           <div class="col-md-4">
+           <div class="col-md-2">
             @Html.LabelFor(model => model.Horario.Grupo.Grupos)
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1"><i class="bi bi-calendar-plus-fill" style="color: midnightblue"></i></span>
@@ -90,7 +91,7 @@
                 @Html.ValidationMessageFor(model => model.Horario.Turno, null, new { @class = "text-danger"})
             </div>
         </div>
-          <div class="col-md-3">
+          <div class=" offset-md-12">
 
             @Html.LabelFor(model=> model.Imagen)
 
@@ -113,7 +114,8 @@
 
         </div>
         @Html.HiddenFor(model => model.Imagen)
-
+        
+        </div>
         <div class="form-group">
             <div class="col-md-3">
                 <input type="submit" value="Guardar" class="btn btn-success" />

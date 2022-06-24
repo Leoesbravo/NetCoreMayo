@@ -86,7 +86,7 @@ namespace BL
                 using (DL.LEscogidoGenMayoContext context = new DL.LEscogidoGenMayoContext())
 
                 {       
-                    var query = context.Materia.FromSqlRaw($"MateriaGetAll '{materia.Nombre}','{materia.Descripcion}'").ToList();
+                    var query = context.Materia.FromSqlRaw($"MateriaGetAll {materia.Semestre.IdSemestre},'{materia.Nombre}'").ToList();
 
                     result.Objects = new List<object>();
                     if (query != null)
