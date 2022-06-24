@@ -4,12 +4,16 @@ namespace PL.Controllers
 {
     public class MateriaController : Controller
     {
+        [HttpGet]
         public ActionResult GetAll()
         {
             ML.Materia materia = new ML.Materia();
             materia.Semestre = new ML.Semestre();
 
-            ML.Result result = BL.Materia.GetAll();
+            materia.Nombre = (materia.Nombre==null) ? "":materia.Nombre;
+            materia.Descripcion = (materia.Descripcion==null) ? "":materia.Descripcion;
+
+            ML.Result result = BL.Materia.GetAll(materia);
             ML.Result resultSemestre = BL.Semestre.GetAll();
 
             materia.Semestre.Semestres = resultSemestre.Objects;
@@ -17,6 +21,21 @@ namespace PL.Controllers
 
             return View(materia);
         }
+        [HttpPost]
+        public ActionResult GetAll(ML.Materia materia)
+        {
+            
+            materia.Semestre = new ML.Semestre();
+
+            ML.Result result = BL.Materia.GetAll(materia);
+            ML.Result resultSemestre = BL.Semestre.GetAll();
+
+            materia.Semestre.Semestres = resultSemestre.Objects;
+            materia.Materias = result.Objects;
+
+            return View(materia);
+        }
+
         [HttpGet]
         public ActionResult Form()
         {

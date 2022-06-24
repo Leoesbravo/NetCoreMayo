@@ -24,6 +24,28 @@
 
 </div>
 
+  <div class="container">
+         <div class="align-content-center">
+        @using (Html.BeginForm("GetAll", "Materia", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre", @autocomplete = "off", @placeholder = "Nombre" })
+                </div>
+            
+
+                <div class="col-md-3">    
+                    @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control", @id = "txtDescripcion", @autocomplete = "off", @placeholder = "Descripcion" })
+                </div>
+               
+                    <div class="col-md-3">
+                        <input type="submit" value="Buscar" class="btn btn-info" />
+                    </div>
+                </div>
+        }
+        </div>
+    </div>
+
 
 
 

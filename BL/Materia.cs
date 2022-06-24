@@ -76,7 +76,8 @@ namespace BL
             }
             return result;
         }
-        public static ML.Result GetAll()
+
+        public static ML.Result GetAll(ML.Materia materia)
         {
             ML.Result result = new ML.Result();
             try
@@ -84,15 +85,15 @@ namespace BL
 
                 using (DL.LEscogidoGenMayoContext context = new DL.LEscogidoGenMayoContext())
 
-                {
-                    var query = context.Materia.FromSqlRaw($"MateriaGetAll").ToList();
+                {       
+                    var query = context.Materia.FromSqlRaw($"MateriaGetAll '{materia.Nombre}','{materia.Descripcion}'").ToList();
 
                     result.Objects = new List<object>();
                     if (query != null)
                     {
                         foreach (var obj in query)
                         {
-                            ML.Materia materia = new ML.Materia();
+                            materia = new ML.Materia();
                             materia.IdMateria = obj.IdMateria;
                             materia.Nombre = obj.Nombre;
                             materia.Creditos = obj.Creditos.Value;
