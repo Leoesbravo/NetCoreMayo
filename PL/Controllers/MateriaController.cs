@@ -26,6 +26,8 @@ namespace PL.Controllers
         {
             
             materia.Semestre = new ML.Semestre();
+            materia.Nombre = (materia.Nombre == null) ? "" : materia.Nombre;
+            materia.Descripcion = (materia.Descripcion == null) ? "" : materia.Descripcion;
 
             ML.Result result = BL.Materia.GetAll(materia);
             ML.Result resultSemestre = BL.Semestre.GetAll();
