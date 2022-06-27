@@ -1,0 +1,3 @@
+Nombre|Costo|Creditos|Descripcion|IdSemestre|Estatus
+Historia|100|20|Historia de mexico|1|true
+Biologia|200|20|Biologia I|2|true
