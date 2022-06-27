@@ -4,51 +4,56 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container">
-<div class=row>
-     <div class="text-center">
-        <h2>Materia</h2>
-        
-     </div>
-     <div class="col-md-6 col-sm-12">
-        <h2>Detalle</h2>
-        
-     </div>
-</div>
+    <div class=row>
+        <div class="text-center">
+            <h2>Materia</h2>
 
-<div class="row">
-    <div class="col-md-12">
-        <h5>Seleccione una materia para editarlo o + para agregar...</h5>
-        <hr />
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <h2>Detalle</h2>
+
+        </div>
     </div>
-</div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h5>Seleccione una materia para editarlo o + para agregar...</h5>
+            <hr />
+        </div>
+    </div>
 
 </div>
 
-  <div class="container">
-         <div class="align-content-center">
+<div class="container">
+    <div class="align-content-center">
         @using (Html.BeginForm("GetAll", "Materia", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <div class="row">
                 <div class="col-md-3">
                     @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre", @autocomplete = "off", @placeholder = "Nombre" })
                 </div>
-            
+
 
                 <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1"><i class="bi bi-journal-text" style="color: midnightblue"></i></span>
-                @Html.DropDownListFor(model => model.Semestre.IdSemestre, new SelectList(Model.Semestre.Semestres, "IdSemestre", "Nombre"), "Selecciona un semestre", new { @class = "form-control", @id = "ddlPlantel" })
-                @Html.ValidationMessageFor(model => model.Semestre.IdSemestre)
-            </div>
-               
-                    <div class="col-md-3">
-                        <input type="submit" value="Buscar" class="btn btn-info" />
-                    </div>
+                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-journal-text" style="color: midnightblue"></i></span>
+                    @Html.DropDownListFor(model => model.Semestre.IdSemestre, new SelectList(Model.Semestre.Semestres, "IdSemestre", "Nombre"), "Selecciona un semestre", new { @class = "form-control", @id = "ddlPlantel" })
+                    @Html.ValidationMessageFor(model => model.Semestre.IdSemestre)
                 </div>
+
+                <div class="col-md-3">
+                    <input type="submit" value="Buscar" class="btn btn-info" />
+                </div>
+            </div>
         }
-        </div>
     </div>
+</div>
 
-
+<div class="container">
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"><i class="bi bi-card-image"></i></span>
+        <input id="archivo" type='file' class="form-control" name="Archivo" />
+    </div>
+</div>
 
 
 <div style="float:right;">
@@ -60,8 +65,8 @@
     <thead>
         <tr class="table-secondary">
             <td>Editar</td>
-            <td style ="display :none;">id</td>
-            <td >Nombre</td>
+            <td style="display :none;">id</td>
+            <td>Nombre</td>
             <td>Creditos</td>
             <td>Costo</td>
             <td>Descripción</td>
@@ -72,14 +77,14 @@
     <tbody>
         @foreach (ML.Materia materia in Model.Materias)
         {
-        <tr>
-            <td style ="text-align: center; vertical-align: middle;"><a class="btn btn-warning glyphicon" href="@Url.Action("Form", "MateriaController", new { IdMateria = materia.IdMateria })"><i class="bi bi-pencil-square" style="color: ivory"></i></a></td>
-            <td style ="display :none;">@materia.IdMateria </td>
-            <td>@materia.Nombre</td>
-            <td>@materia.Creditos</td>
-            <td>@materia.Costo</td>
-            <td>@materia.Descripcion</td>
-            @if (materia.Estatus)
+            <tr>
+                <td style="text-align: center; vertical-align: middle;"><a class="btn btn-warning glyphicon" href="@Url.Action("Form", "MateriaController", new { IdMateria = materia.IdMateria })"><i class="bi bi-pencil-square" style="color: ivory"></i></a></td>
+                <td style="display :none;">@materia.IdMateria </td>
+                <td>@materia.Nombre</td>
+                <td>@materia.Creditos</td>
+                <td>@materia.Costo</td>
+                <td>@materia.Descripcion</td>
+                @if (materia.Estatus)
                 {
                     <td><a href="@Url.Action("UpdateStatus", "Materia", new { IdMateria = materia.IdMateria})"><img src="~/Image/ON.jpg" style="width:80px; height:40px" /></a></td>
                 }
@@ -87,8 +92,8 @@
                 {
                     <td><a href="@Url.Action("UpdateStatus", "Materia", new { IdMateria = materia.IdMateria})"><img src="~/Image/OFF.jpg" style="width:75px; height:35px" /></a></td>
                 }
-            <td style ="text-align: center; vertical-align: middle;"><a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "MateriaController", new { IdMateria= materia.IdMateria})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"><i class="bi bi-eraser-fill" style="color: mintcream"></i></a></td>
-        </tr>
+                <td style="text-align: center; vertical-align: middle;"><a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "MateriaController", new { IdMateria= materia.IdMateria})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"><i class="bi bi-eraser-fill" style="color: mintcream"></i></a></td>
+            </tr>
         }
 
     </tbody>

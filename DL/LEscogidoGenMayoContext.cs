@@ -27,7 +27,7 @@ namespace DL
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=LAPTOP-RH1B3NSI; Database= LEscogidoGenMayo; Trusted_Connection=True; User ID=sa; Password=pass@word1;");
+                optionsBuilder.UseSqlServer("Server=LAPTOP-VA31VKK7; Database= LEscogidoGenMayo; Trusted_Connection=True; User ID=sa; Password=pass@word1;");
             }
         }
 
@@ -72,28 +72,6 @@ namespace DL
                     .HasConstraintName("FK__Horario__IdMater__1A14E395");
             });
 
-            modelBuilder.Entity<Horario>(entity =>
-            {
-                entity.HasKey(e => e.IdHorario)
-                    .HasName("PK__Horario__1539229B6EFE1C46");
-
-                entity.ToTable("Horario");
-
-                entity.Property(e => e.Turno)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.IdGrupoNavigation)
-                    .WithMany(p => p.Horarios)
-                    .HasForeignKey(d => d.IdGrupo)
-                    .HasConstraintName("FK__Horario__IdGrupo__1DE57479");
-
-                entity.HasOne(d => d.IdMateriaNavigation)
-                    .WithMany(p => p.Horarios)
-                    .HasForeignKey(d => d.IdMateria)
-                    .HasConstraintName("FK__Horario__IdMater__1CF15040");
-            });
-
             modelBuilder.Entity<Materium>(entity =>
             {
                 entity.HasKey(e => e.IdMateria)
@@ -104,6 +82,8 @@ namespace DL
                 entity.Property(e => e.Descripcion)
                     .HasMaxLength(100)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Imagen).IsUnicode(false);
 
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(50)

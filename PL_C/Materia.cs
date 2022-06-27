@@ -17,6 +17,8 @@ namespace PL_C
 
             string line;
             bool isFirstLine = true;
+            ML.Result resultErrores = new ML.Result();
+            resultErrores.Objects = new List<object>();
             while ((line = archivo.ReadLine()) != null)
             {
                 if (isFirstLine)
@@ -36,11 +38,30 @@ namespace PL_C
                 materia.Semestre = new ML.Semestre();
                 materia.Semestre.IdSemestre = int.Parse(datos[4]);
                 materia.Estatus = bool.Parse(datos[5]);
-                
+
                 result = BL.Materia.Add(materia);
 
+                if (!result.Correct) //si el resultado es diferente a correcto
+                {
+                    resultErrores.Objects.Add(
+                        "No se inserto el Nombre " + materia.Nombre +
+                        "No se inserto el Costo " + materia.Costo +
+                        "No se inserto el Creditos" + materia.Creditos +
+                        "No se inserto el Descripcion" + materia.Descripcion);
+                } //Se le asigna agrega la lista de errores
+            }
+
+            if (resultErrores.Objects != null)
+            {
 
             }
+
+            TextWriter tw = new StreamWriter(@"C:\Users\digis\source\repos\NetCoreMayo\Errores.txt");
+            foreach (string error in resultErrores.Objects)
+            {
+                tw.WriteLine(error); //Se le concatenan todos los errores
+            }
+            tw.Close();
 
             return result;
         }
