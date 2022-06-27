@@ -48,12 +48,20 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1"><i class="bi bi-card-image"></i></span>
-        <input id="archivo" type='file' class="form-control" name="Archivo" />
+      <div class="container">
+        @using (Html.BeginForm("CargaMasiva", "Materia", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="form-group">
+                <div class="col-md-3">
+               
+                  <a><input type="file" name="Archivo"></a>
+                </div>
+
+                <a><input type="submit" value="Cargar Archivo" class="btn btn-info"></a>
+            </div>
+        }
     </div>
-</div>
+
 
 
 <div style="float:right;">
