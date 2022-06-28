@@ -1,0 +1,99 @@
+﻿@model ML.Result
+@{
+    ViewData["Title"] = "MateriaCargaMasiva";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <h1>Carga Masiva de Materias</h1>
+    <h5>Seleccione con que tipo de archivo desea hacer la carga</h5>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <a><input type="submit" value="Excel" class="btn btn-success col-md-12" id="xlsx"/></a>
+        </div>
+        <div class="col-md-6">
+            <a><input type="submit" value="TXT" class="btn btn-primary col-md-12" id="txt" /></a>
+        </div>
+    </div>
+    @using (Html.BeginForm("MateriaCargaMasiva", "CargaMasiva", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+    <div class="row g-3" id="fuImage" style="display:none;">
+        <div class="col-md-6">
+            <div class="input-group">
+                <span class="input-group-text" id="basic-addon1"><i class="bi bi-file-earmark-text-fill" style="color: lightseagreen"></i></span>
+                <input type='file' class="form-control" name="FileExcel" />
+            </div>
+        </div>
+        @if (!Model.Correct)
+        {
+        <div class="row g-3">
+            <div class="col-md-1">
+                <a><input type="submit" value="Procesar" class="btn btn-success" /></a>
+                <br />
+            </div>
+        </div>
+        }
+        else
+        {
+        <div class="row g-3">
+            <div class="col-md-1">
+                <a><input type="submit" value="Insertar" class="btn btn-success"/></a>
+                <br />
+            </div>
+        </div>
+        }
+    </div>
+    <br />
+    }
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        @if (Model.Objects != null)
+        {
+        @if(Model.Objects.Count > 0 ){
+        <table class="table table-bordered table-responsive">
+            <thead>
+                <tr class="text-center">
+                    <td>IdRegistro</td>
+                    <td>Error</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ML.ErrorExcel error in Model.Objects)
+                {
+                <tr class="text-center">
+                    <td>@error.IdRegistro</td>
+                    <td>@error.Mensaje</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        }
+        }
+        else
+        {
+
+        }
+    </div>
+</div>
+
+
+@section Scripts
+{
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript">
+
+
+
+
+    $('#xlsx').click(function() {
+      $('#fuImage').toggle('slow', function() {
+      });
+    });
+</script>
+}
+
