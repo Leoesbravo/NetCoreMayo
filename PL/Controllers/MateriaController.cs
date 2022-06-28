@@ -10,8 +10,8 @@ namespace PL.Controllers
             ML.Materia materia = new ML.Materia();
             materia.Semestre = new ML.Semestre();
 
-            materia.Nombre = (materia.Nombre==null) ? "":materia.Nombre;
-            materia.Semestre.IdSemestre = (materia.Semestre.IdSemestre ==null) ? 0:materia.Semestre.IdSemestre;
+            materia.Nombre = (materia.Nombre == null) ? "" : materia.Nombre;
+            materia.Semestre.IdSemestre = (materia.Semestre.IdSemestre == null) ? 0 : materia.Semestre.IdSemestre;
 
             ML.Result result = BL.Materia.GetAll(materia);
             ML.Result resultSemestre = BL.Semestre.GetAll();
@@ -24,7 +24,7 @@ namespace PL.Controllers
         [HttpPost]
         public ActionResult GetAll(ML.Materia materia)
         {
-            
+
             //materia.Semestre = new ML.Semestre();
             materia.Nombre = (materia.Nombre == null) ? "" : materia.Nombre;
             materia.Semestre.IdSemestre = (materia.Semestre.IdSemestre == null) ? 0 : materia.Semestre.IdSemestre;
@@ -118,7 +118,7 @@ namespace PL.Controllers
 
             return Json(result.Objects);
         }
-         //metodo para convertir a bytes la imagen
+        //metodo para convertir a bytes la imagen
         public static byte[] ConvertToBytes(IFormFile imagen)
         {
 
@@ -126,8 +126,68 @@ namespace PL.Controllers
 
             byte[] bytes = new byte[fileStream.Length];
             fileStream.Read(bytes, 0, (int)fileStream.Length);
-               
+
             return bytes;
         }
+
+        [HttpPost]
+        public ActionResult CargaMasiva()
+        {
+            ML.Result resultErrores = new ML.Result();
+            resultErrores.Objects = new List<object>();
+
+            try
+            {
+                IFormFile archivo = Request.Form.Files["Archivo"];
+                using (StreamReader sr = new StreamReader(archivo.OpenReadStream()))
+                {
+                    string line;
+                    line = sr.ReadLine();
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        string[] datos = line.Split('|');
+
+                        ML.Materia materia = new ML.Materia();
+                        materia.Nombre = datos[0];
+                        materia.Costo = decimal.Parse(datos[1]);
+                        materia.Creditos = byte.Parse(datos[2]);
+                        materia.Descripcion = datos[3];
+                        materia.Semestre = new ML.Semestre();
+                        materia.Semestre.IdSemestre = int.Parse(datos[4]);
+                        materia.Estatus = bool.Parse(datos[5]);
+
+                        ML.Result result = BL.Materia.Add(materia);
+
+                        if (!result.Correct) //si el resultado es diferente a correcto
+                        {
+                            resultErrores.Objects.Add(
+                                "No se inserto el Nombre " + materia.Nombre +
+                                "No se inserto el Costo " + materia.Costo +
+                                "No se inserto el Creditos" + materia.Creditos +
+                                "No se inserto el Descripcion" + materia.Descripcion);
+                        } //Se le asigna agrega la lista de errores
+
+
+
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                // Let the user know what went wrong.
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);
+            }
+
+            return PartialView("ValidationModal");
+        }
+
+        //public ActionResult Download()
+        //{
+        //    string file = HttpContext.Session.GetString["RutaDescarga"];
+        //    string contentType = "text/plain";
+        //    return File(file, contentType, Path.GetFileName(file));
+        //}
     }
 }
