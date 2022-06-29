@@ -24,10 +24,10 @@ namespace PL.Controllers
         [HttpPost]
         public ActionResult MateriaCargaMasiva(ML.Materia materia)
         {
-
+            
             IFormFile archivo = Request.Form.Files["FileExcel"];
 
-            if (HttpContext.Session.GetString("PathArchivo") == null)
+            if (HttpContext.Session.GetString("PathArchivo") == null) //obtiene informacion de la sesion
             {
                 if (archivo.Length > 0)
                 {
@@ -94,13 +94,13 @@ namespace PL.Controllers
                         ML.Result resultAdd = BL.Materia.Add(materiaItem);
                         if (!resultAdd.Correct)
                         {
-                            resultErrores.Objects.Add("No se insertó el Alumno con nombre: " + materiaItem.Nombre + " Creditos:" + materiaItem.Creditos + "Costo:" + materiaItem.Costo + " Error: " + resultAdd.ErrorMessage);
+                            resultErrores.Objects.Add("No se insertó la materia con nombre: " + materiaItem.Nombre + " Creditos:" + materiaItem.Creditos + "Costo:" + materiaItem.Costo + " Error: " + resultAdd.ErrorMessage);
                         }
                     }
                     if (resultErrores.Objects.Count > 0)
                     {
-
-                        string fileError = Path.Combine(_hostingEnvironment.WebRootPath, @"~\Files\logErrores.txt");
+                        string folderError = _configuration["PathFolderError:value"];
+                        string fileError = Path.Combine(_hostingEnvironment.WebRootPath,folderError + @"\logErrores.txt");
                         using (StreamWriter writer = new StreamWriter(fileError))
                         {
                             foreach (string ln in resultErrores.Objects)
