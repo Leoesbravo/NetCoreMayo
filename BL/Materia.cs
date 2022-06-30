@@ -195,7 +195,6 @@ namespace BL
                                 materia.Grupo.Horario = row[4].ToString();
 
                                 materia.Grupo.Plantel = new ML.Plantel();
-                                //
                                 materia.Grupo.Plantel.IdPlantel = int.Parse(row[5].ToString());
 
                                 materia.Estatus = bool.Parse(row[6].ToString());

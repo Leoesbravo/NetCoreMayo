@@ -70,17 +70,32 @@ namespace PL.Controllers
                 //convierto a base 64 la imagen y la guardo en mi objeto materia
                 materia.Imagen = Convert.ToBase64String(ImagenBytes);
             }
-            ML.Result result = BL.Materia.Add(materia);
-            if (result.Correct)
+            if (ModelState.IsValid)
             {
-                ViewBag.Message = "Se ha registrado la materia";
-                return PartialView("Modal");
+                ML.Result result = BL.Materia.Add(materia);
+                if (result.Correct)
+                {
+                    ViewBag.Message = "Se ha registrado la materia";
+                    return PartialView("Modal");
+                }
+                else
+                {
+                    ViewBag.Message = "No se ha podido registrar la materia";
+                    return PartialView("Modal");
+                }
             }
             else
             {
-                ViewBag.Message = "No se ha podido registrar la materia";
-                return PartialView("Modal");
+                ML.Result result = BL.Semestre.GetAll();
+                ML.Result resultPlantel = BL.Plantel.GetAll();
+
+                materia.Semestre.Semestres = result.Objects;
+
+                materia.Horario.Grupo.Plantel.Planteles = resultPlantel.Objects;
+
+                return View(materia);
             }
+            
         }
         [HttpGet]
         public ActionResult UpdateStatus(int IdMateria)

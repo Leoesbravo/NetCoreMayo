@@ -22,24 +22,28 @@
             @Html.LabelFor(model => model.Nombre)
             <div class="input-group mb-3">
                 <span class="input-group-text"><i class="bi bi-rulers" style="color: midnightblue"></i></span>
-                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre", @placeholder="Ejemp: Historia", autocomplete = "off" })
+                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre", @placeholder="Ejemp: Historia", autocomplete = "off", @onkeypress = "return SoloLetras(event)"})
                 @Html.ValidationMessageFor(model => model.Nombre, null, new { @class = "text-danger"})
             </div>
+            @Html.Label("", null, new {@id = "lblNombre"})
         </div>
         <div class="col-md-2">
             @Html.LabelFor(model => model.Costo)
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1"><i class="bi bi-currency-dollar" style="color: midnightblue"></i></span>
-                @Html.TextBoxFor(model => model.Costo, new { @class = "form-control", @id = "txtNombre", @placeholder="MXN" })
+                @Html.TextBoxFor(model => model.Costo, new { @class = "form-control", @id = "txtCosto", @placeholder="MXN",@onkeypress = "return SoloNumeros(event, 'lblCosto')" })
                 @Html.ValidationMessageFor(model => model.Costo)
             </div>
+            @Html.Label("", null, new {@id = "lblCosto"})
         </div>
         <div class="col-md-2">
             @Html.LabelFor(model => model.Creditos)
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1" style="color: midnightblue">#</span>
-                @Html.TextBoxFor(model => model.Creditos, new { @class = "form-control", @id = "txtCreditos",  @onkeypress = "return SoloNumeros(event)"  })
+                @Html.TextBoxFor(model => model.Creditos, new { @class = "form-control", @id = "txtCreditos", @onkeypress = "return SoloNumeros(event, 'lblCreditos')"  })
+                 @Html.ValidationMessageFor(model => model.Creditos)
             </div>
+            @Html.Label("", null, new {@id = "lblCreditos"})
         </div>
         <div class="col-md-4">
             @Html.LabelFor(model => model.Descripcion)
@@ -188,6 +192,37 @@
 
                     reader.readAsDataURL(input.files[0]);
                 }
+                }
+
+           function SoloLetras(e){
+                var regex = /^[a-zA-Z]+$/;
+                var letra = e.key;
+
+                if(regex.test(letra)){
+                    $("#txtNombre").css({ "color": "green" });
+                    return true;
+                }
+                else{
+                    $("#lblNombre").text('Solo se aceptan letras');
+                    $('#lblNombre').css({ "color": "red" });
+                    return false;
+                }
             }
+
+        function SoloNumeros(e, controlId) {
+        var caracter = e.key;
+        if (!/^[0-9]/g.test(caracter)) {
+            $('#' + controlId).text("Solo se aceptan numeros");
+            $('#' + controlId).css({ "color": "red" });
+            return false;
+        }
+        else {
+            $('#' + controlId).text("");
+            return true;
+        }
+         }
+
+    
+
     </script>
 }
