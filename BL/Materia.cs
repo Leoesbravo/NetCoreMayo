@@ -191,13 +191,14 @@ namespace BL
                                 materia.Semestre = new ML.Semestre();
                                 materia.Semestre.IdSemestre = int.Parse(row[3].ToString());
 
-                                materia.Grupo = new ML.Grupo();
-                                materia.Grupo.Horario = row[4].ToString();
+                                //materia.Grupo = new ML.Grupo();
+                                //materia.Grupo.Horario = row[4].ToString();
 
                                 materia.Grupo.Plantel = new ML.Plantel();
+                                //
                                 materia.Grupo.Plantel.IdPlantel = int.Parse(row[5].ToString());
 
-                                materia.Estatus = bool.Parse(row[6].ToString());
+                                materia.Estatus = bool.Parse(row[4].ToString());
 
                                 result.Objects.Add(materia);
                             }
@@ -205,7 +206,7 @@ namespace BL
                             result.Correct = true;
 
                         }
-
+                       
                         result.Object = tableMateria;
 
                         if (tableMateria.Rows.Count > 1)
@@ -260,14 +261,14 @@ namespace BL
                     {
                         error.Mensaje += "Ingresar el semestre ";
                     }
-                    if (materia.Grupo.Horario == "")
-                    {
-                        error.Mensaje += "Ingresar el horario ";
-                    }
-                    if (materia.Grupo.Plantel.IdPlantel.ToString() == "")
-                    {
-                        error.Mensaje += "Ingresar el plantel ";
-                    }
+                    //if (materia.Grupo.Horario == "")
+                    //{
+                    //    error.Mensaje += "Ingresar el horario ";
+                    //}
+                    //if (materia.Grupo.Plantel.IdPlantel.ToString() == "")
+                    //{
+                    //    error.Mensaje += "Ingresar el plantel ";
+                    //}
                     if (materia.Estatus.ToString() == "")
                     {
                         error.Mensaje += "Ingresar el status ";

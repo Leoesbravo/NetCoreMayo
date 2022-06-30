@@ -1,0 +1,4 @@
+No se insertó el Alumno con nombre: Español Creditos:1Costo:1300 Error: Error converting data type int to tinyint.
+No se insertó el Alumno con nombre: Fisica Creditos:12Costo:1450 Error: Error converting data type int to tinyint.
+No se insertó el Alumno con nombre: Historia Creditos:11Costo:200 Error: The INSERT statement conflicted with the FOREIGN KEY constraint "FK__Materia__IdSemes__173876EA". The conflict occurred in database "LEscogidoGenMayo", table "dbo.Semestre", column 'IdSemestre'.
+The statement has been terminated.
