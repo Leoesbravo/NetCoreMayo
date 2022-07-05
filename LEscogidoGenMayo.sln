@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ML", "ML\ML.csproj", "{0903
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BL\BL.csproj", "{DAB5ED36-02A6-4805-A16A-C8EBA3C266A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL_C", "PL_C\PL_C.csproj", "{6CA97119-23DE-4C94-A7C7-7387B4FC3D31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PL_C", "PL_C\PL_C.csproj", "{6CA97119-23DE-4C94-A7C7-7387B4FC3D31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SL_WebApi", "SL_WebApi\SL_WebApi.csproj", "{A167F602-F93C-4FAF-8BDF-DDEDDAABF408}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{6CA97119-23DE-4C94-A7C7-7387B4FC3D31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CA97119-23DE-4C94-A7C7-7387B4FC3D31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CA97119-23DE-4C94-A7C7-7387B4FC3D31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A167F602-F93C-4FAF-8BDF-DDEDDAABF408}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A167F602-F93C-4FAF-8BDF-DDEDDAABF408}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A167F602-F93C-4FAF-8BDF-DDEDDAABF408}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A167F602-F93C-4FAF-8BDF-DDEDDAABF408}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
