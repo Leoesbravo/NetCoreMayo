@@ -8,7 +8,7 @@ namespace SL_WebApi.Controllers
     public class MateriaController : ControllerBase
     {
         [HttpGet]
-        [Route("GetAll")]
+        [Route("GetAll")]  
         public IActionResult GetAll()
         {
 
