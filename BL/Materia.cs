@@ -14,7 +14,7 @@ namespace BL
             {
                 using (DL.LEscogidoGenMayoContext context = new DL.LEscogidoGenMayoContext())
                 {
-                    var query = context.Database.ExecuteSqlRaw($"MateriaAdd '{materia.Nombre}', {materia.Costo}, {materia.Creditos}, '{materia.Descripcion}' , {materia.Semestre.IdSemestre}, {materia.Estatus} ");
+                    var query = context.Database.ExecuteSqlRaw($"MateriaAdd '{materia.Nombre}', {materia.Creditos}, {materia.Costo}, {materia.Semestre.IdSemestre} , '{materia.Descripcion}', '{materia.Horario.Turno}', {materia.Horario.Grupo.IdGrupo}, '{materia.Imagen}' ");
 
                     if (query >= 1)
                     {

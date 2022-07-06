@@ -26,5 +26,22 @@ namespace SL_WebApi.Controllers
                 return NotFound(result);
             }
         }
+        [HttpPost]
+        [Route("Add")]
+
+        public IActionResult Post([FromBody] ML.Materia materia)
+        {
+            var result = BL.Materia.Add(materia);
+
+            if (result.Correct)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
     }
 }
