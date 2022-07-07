@@ -88,9 +88,10 @@ namespace BL
                 using (DL.LEscogidoGenMayoContext context = new DL.LEscogidoGenMayoContext())
 
                 {
-                    materia.Semestre.IdSemestre = (materia.Semestre.IdSemestre == null) ? 0 : materia.Semestre.IdSemestre;
+                    //materia.Semestre.IdSemestre = (materia.Semestre.IdSemestre == null) ? 0 : materia.Semestre.IdSemestre;
                     materia.Nombre = (materia.Nombre == null) ? "" : materia.Nombre;
-                    var query = context.Materia.FromSqlRaw($"MateriaGetAll {materia.Semestre.IdSemestre},'{materia.Nombre}'").ToList();
+                    materia.Descripcion = (materia.Descripcion == null) ? "" : materia.Descripcion;
+                    var query = context.Materia.FromSqlRaw($"MateriaGetAll '{materia.Nombre}','{materia.Descripcion}'").ToList();
 
                     result.Objects = new List<object>();
                     if (query != null)

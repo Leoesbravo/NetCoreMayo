@@ -24,7 +24,6 @@
   <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
     <ProjectReference Include="..\ML\ML.csproj" />
-    <ProjectReference Include="..\SL_WebApi\SL_WebApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>

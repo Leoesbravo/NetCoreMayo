@@ -29,7 +29,7 @@ namespace SL_WebApi.Controllers
         [HttpPost]
         [Route("Add")]
 
-        public IActionResult Post([FromBody] ML.Materia materia)
+        public IActionResult Add([FromBody] ML.Materia materia)
         {
             var result = BL.Materia.Add(materia);
 
