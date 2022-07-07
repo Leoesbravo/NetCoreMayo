@@ -25,9 +25,9 @@ namespace PL.Controllers
             //materia.Semestre.IdSemestre = (materia.Semestre.IdSemestre == null) ? 0 : materia.Semestre.IdSemestre;
 
             //ML.Result result = BL.Materia.GetAll(materia);
-            //ML.Result resultSemestre = BL.Semestre.GetAll();
+            ML.Result resultSemestre = BL.Semestre.GetAll();
 
-            //materia.Semestre.Semestres = resultSemestre.Objects;
+            materia.Semestre.Semestres = resultSemestre.Objects;
             //materia.Materias = result.Objects;
 
             //return View(materia);
@@ -54,8 +54,9 @@ namespace PL.Controllers
                         resultMaterias.Objects.Add(resultItemList);
                     }
                 }
+                materia.Materias = resultMaterias.Objects;
             }
-            return View(resultMaterias);
+            return View(materia);
 
         }
         [HttpPost]

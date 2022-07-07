@@ -101,13 +101,17 @@ namespace BL
                             materia = new ML.Materia();
                             materia.IdMateria = obj.IdMateria;
                             materia.Nombre = obj.Nombre;
-                            materia.Creditos = obj.Creditos.Value;
                             materia.Costo = obj.Costo.Value;
+                            materia.Creditos = obj.Creditos.Value;
                             materia.Descripcion = obj.Descripcion;
                             materia.Estatus = obj.Estatus.Value;
 
                             materia.Semestre = new ML.Semestre();
                             materia.Semestre.IdSemestre = obj.IdSemestre.Value;
+
+                            materia.Imagen = obj.Imagen;
+
+
 
                             result.Objects.Add(materia);
                         }
