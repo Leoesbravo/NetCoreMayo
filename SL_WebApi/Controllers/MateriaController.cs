@@ -3,12 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SL_WebApi.Controllers
 {
-    [Route("api/Materia")]
-    [ApiController]
     public class MateriaController : ControllerBase
     {
         [HttpGet]
-        [Route("GetAll")]  
+        [Route("api/materia/GetAll")]  
         public IActionResult GetAll()
         {
 
@@ -27,7 +25,7 @@ namespace SL_WebApi.Controllers
             }
         }
         [HttpPost]
-        [Route("Add")]
+        [Route("api/materia/add")]
 
         public IActionResult Add([FromBody] ML.Materia materia)
         {

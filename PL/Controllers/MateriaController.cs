@@ -38,7 +38,7 @@ namespace PL.Controllers
             {
                 client.BaseAddress = new Uri(_configuration["WebAPI"]);
 
-                var responseTask = client.GetAsync("GetAll");
+                var responseTask = client.GetAsync("api/materia/GetAll");
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -110,16 +110,34 @@ namespace PL.Controllers
             }
             if (ModelState.IsValid)
             {
-                ML.Result result = BL.Materia.Add(materia);
-                if (result.Correct)
+                //ML.Result result = BL.Materia.Add(materia);
+
+                using (var client = new HttpClient())
                 {
-                    ViewBag.Message = "Se ha registrado la materia";
-                    return PartialView("Modal");
-                }
-                else
-                {
-                    ViewBag.Message = "No se ha podido registrar la materia";
-                    return PartialView("Modal");
+                    client.BaseAddress = new Uri(_configuration["WebAPI"]);
+
+                    //HTTP POST
+                    var postTask = client.PostAsJsonAsync <ML.Materia>("api/materia/add", materia);
+                    postTask.Wait();
+
+                    var result = postTask.Result;
+                    //if (result.IsSuccessStatusCode)
+                    //{
+                    //    return RedirectToAction("GetAll");
+                    //}
+
+                    //return View("GetAll");
+
+                    if (result.IsSuccessStatusCode)
+                    {
+                        ViewBag.Message = "Se ha registrado la materia";
+                        return PartialView("Modal");
+                    }
+                    else
+                    {
+                        ViewBag.Message = "No se ha podido registrar la materia";
+                        return PartialView("Modal");
+                    }
                 }
             }
             else
@@ -133,7 +151,7 @@ namespace PL.Controllers
 
                 return View(materia);
             }
-            
+
         }
         [HttpGet]
         public ActionResult UpdateStatus(int IdMateria)
